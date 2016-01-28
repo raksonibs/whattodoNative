@@ -1,17 +1,17 @@
 var React = require('react-native');
-import Thing from './Thing'
+import Event from './Event'
 var {
   ScrollView,
   StyleSheet,
   View
 } = React;
 
-class Event extends React.Component {
+class EventList extends React.Component {
     render() {
       return (
         <View>
          {this.props.things.map((thing, i) => {
-            return <Thing delete={this.props.delete} update={this.props.update} thing={thing} key={i} />
+            return <Event delete={this.props.delete} update={this.props.update} thing={thing} key={i} />
           })}
        </View>
     );
@@ -28,4 +28,4 @@ var styles = StyleSheet.create({
   }
 })
 
-module.exports = Event;
+module.exports = EventList;

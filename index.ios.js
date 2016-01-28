@@ -44,9 +44,7 @@ class whattodoNative extends React.Component {
 
   render() {
     return (
-      <View style={styles.app}>
-        <Image source={require('image!pizza')} style={styles.image} />
-        {this.thingform()}        
+      <View style={styles.app}>             
         {this.things()}
       </View>
     );
@@ -132,4 +130,4 @@ var styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('whattodoNative', () => TestNative);
+AppRegistry.registerComponent('whattodoNative', () => whattodoNative);

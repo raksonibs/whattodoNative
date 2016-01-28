@@ -13,7 +13,7 @@ var {
 
 let screenHeight = Dimensions.get('window').height;
 
-class Thing extends React.Component {
+class Event extends React.Component {
   makeLoved() {
     this.props.update(this.props.thing)
   }
@@ -43,5 +43,5 @@ var styles = StyleSheet.create({
   },
 });
 
-module.exports = Thing;
+module.exports = Event;
 
