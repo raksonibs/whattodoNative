@@ -1,5 +1,4 @@
 var React = require('react-native');
-import EventShow from './EventShow'
 
 var {
   Platform,
@@ -15,7 +14,7 @@ var {
 
 let screenHeight = Dimensions.get('window').height;
 
-class Event extends React.Component {
+class EventShow extends React.Component {
   render() {
         return (
           <View style={styles.thing}>
@@ -34,7 +33,10 @@ class Event extends React.Component {
               // need difference from this person here
             </Text>
             <Text>
-              Click to learn more, then show view, with listing url
+             {this.props.thing.url}
+            </Text>
+            <Text>
+             {this.props.thing.desc}
             </Text>
           </View>
         );
@@ -53,5 +55,5 @@ var styles = StyleSheet.create({
   },
 });
 
-module.exports = Event;
+module.exports = EventShow;
 

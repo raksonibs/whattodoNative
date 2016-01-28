@@ -44,33 +44,12 @@ class whattodoNative extends React.Component {
 
   render() {
     return (
-      <View style={styles.app}>             
+      <View style={styles.app}>      
         {this.things()}
       </View>
     );
   }
 
-  addThing(thing) {
-    fetch('http://localhost:3000/api/v1/create_today', {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: thing.name
-      })
-    })
-    .then((response) => response.json())
-    .then((responseData) => {      
-        things.unshift(responseData)
-        component.setState({
-            things: things
-        });
-    })
-    .done();
-
-  }
 
   things() {
     return  (
@@ -81,14 +60,6 @@ class whattodoNative extends React.Component {
         >
         <EventList things={this.state.things} />
       </ScrollView>
-    )
-  }
-
-  thingform() {
-    return (
-      <View style={styles.thingform}>
-        <EventForm text={this.state.text} addThing={this.addThing}/>
-      </View>
     )
   }
 }
