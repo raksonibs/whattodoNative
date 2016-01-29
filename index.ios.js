@@ -6,7 +6,8 @@ var {
   View,
   TextInput,
   Image,
-  ScrollView
+  ScrollView,
+  Navigator
 } = React;
 
 var Dimensions = require('Dimensions');
@@ -18,6 +19,15 @@ var REQUEST_URL = 'http://localhost:3000/api/v1/today';
 
 let things = [];
 let component;
+
+fetch(REQUEST_URL)
+  .then((response) => response.json())
+  .then((responseData) => {
+    console.log('fetching')
+    things = responseData.events
+
+  })
+ .done();
 
 class whattodoNative extends React.Component {
   constructor(props) {
@@ -44,8 +54,20 @@ class whattodoNative extends React.Component {
 
   render() {
     return (
-      <View style={styles.app}>      
-        {this.things()}
+      <View style={styles.app}>
+        <Navigator
+          initialRoute={{name: 'EventList', component: EventList, passProps: {things: things}}}
+          configureScene={() => {
+              return Navigator.SceneConfigs.FloatFromRight;
+          }}
+          renderScene={(route, navigator) => {              
+              console.log(route, navigator); 
+
+              if (route.component) {
+                  return React.createElement(route.component, { navigator });
+              }
+          }}
+       />     
       </View>
     );
   }

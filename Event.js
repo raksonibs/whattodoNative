@@ -1,5 +1,5 @@
 var React = require('react-native');
-import EventShow from './EventShow'
+import EventShow from './EventShow.js'
 
 var {
   Platform,
@@ -16,6 +16,14 @@ var {
 let screenHeight = Dimensions.get('window').height;
 
 class Event extends React.Component {
+  onPressEvent() {
+      this.props.navigator.push({
+          name: 'EventShow',
+          component: EventShow,
+          passProps: {thing: this.props.thing}
+      });
+  }
+
   render() {
         return (
           <View style={styles.thing}>
@@ -33,7 +41,7 @@ class Event extends React.Component {
               {this.props.thing.location}
               // need difference from this person here
             </Text>
-            <Text>
+            <Text onPress={this.onPressFeedEvent.bind(this)}>
               Click to learn more, then show view, with listing url
             </Text>
           </View>

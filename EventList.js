@@ -8,9 +8,10 @@ var {
 
 class EventList extends React.Component {
     render() {
+      things = this.props.things || []
       return (
         <View>
-         {this.props.things.map((thing, i) => {
+         {things.map((thing, i) => {
             return <Event delete={this.props.delete} update={this.props.update} thing={thing} key={i} />
           })}
        </View>
