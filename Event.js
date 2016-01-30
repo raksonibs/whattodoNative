@@ -35,25 +35,26 @@ class Event extends React.Component {
             <TouchableHighlight
               onPress={this.onPressEvent.bind(this)}
             >
-              <Text style={styles.buttonText}>Submit</Text>
+              <View>
+                <Image
+                  source={{uri: this.props.thing.image}}              
+                />
+                
+                <Text>
+                  {this.props.thing.name}
+                </Text>
+                <Text>
+                  {this.props.thing.price}
+                </Text>
+                <Text>
+                  {this.props.thing.location}
+                  // need difference from this person here
+                </Text>
+                <Text>
+                  Click to learn more, then show view, with listing url
+                </Text>
+              </View>
             </TouchableHighlight>
-              <Image
-                source={{uri: this.props.thing.image}}              
-              />
-              
-              <Text>
-                {this.props.thing.name}
-              </Text>
-              <Text>
-                {this.props.thing.price}
-              </Text>
-              <Text>
-                {this.props.thing.location}
-                // need difference from this person here
-              </Text>
-              <Text>
-                Click to learn more, then show view, with listing url
-              </Text>
           </View>
         );
     }
