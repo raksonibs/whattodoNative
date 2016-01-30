@@ -19,10 +19,19 @@ class EventShow extends React.Component {
     super(props)
   }
 
+  goBack() {
+    this.props.navigator.pop();
+  }
+
   render() {
     return (
       <View style={styles.thing}>
-        Event Show
+        <Text>Event Show</Text>
+        <TouchableHighlight
+          onPress={this.goBack.bind(this)}
+        >
+          <Text style={styles.buttonText}>Go Back!</Text>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -32,7 +41,7 @@ var styles = StyleSheet.create({
   thing: {
     alignSelf: 'center',
     padding: 20,
-    paddingTop: 0,
+    paddingTop: 50,
     width: screenHeight * 0.5,
     height: screenHeight * 0.1,
     borderColor: 'gray', 

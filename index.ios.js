@@ -34,13 +34,25 @@ class whattodoNative extends React.Component {
   render() {
     return (
       <View style={styles.app}>
-        <NavigatorIOS
-             style={styles.app}
-             initialRoute={{
-               title: 'EventList',
-               component: EventList,
-               passProps: { navigator: this.props.navigator }
-             }} />
+        <Navigator
+          initialRoute={{name: 'EventList', component: EventList}}
+          configureScene={() => {
+              return Navigator.SceneConfigs.FloatFromRight;
+          }}
+          renderScene={(route, navigator) => {              
+              console.log(route, navigator); 
+
+              if (route.component) {
+                  return React.createElement(route.component, { navigator });
+              }
+          }}
+          onBack={() => {
+            if (route.index > 0) {
+              navigator.pop();
+            }
+          }}
+       />     
+
               
       </View>
     );

@@ -37,7 +37,6 @@ class EventList extends React.Component {
     }
     render() {
       things = this.state.things || things
-      debugger
       return (
         <View style={styles.thingContainer}>
           <ScrollView automaticallyAdjustContentInsets={false}
