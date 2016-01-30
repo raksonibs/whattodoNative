@@ -15,48 +15,19 @@ var Dimensions = require('Dimensions');
 var EventForm             = require('./EventForm');
 var EventList             = require('./EventList');
 
-var REQUEST_URL = 'http://localhost:3000/api/v1/today';
-
-let things = [];
-let component;
-
-fetch(REQUEST_URL)
-  .then((response) => response.json())
-  .then((responseData) => {
-    console.log('fetching')
-    things = responseData.events
-
-  })
- .done();
 
 class whattodoNative extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { things: things, text: "Input new thing here!"};
+    this.state = { text: "Input new thing here!"};
     component = this;
-  }
-
-  componentDidMount() {
-    this.fetchData()
-  }
-
-  fetchData() {
-    fetch(REQUEST_URL)
-    .then((response) => response.json())
-    .then((responseData) => {
-        things = responseData.events
-        this.setState({
-            things: things
-        });
-    })
-    .done();
   }
 
   render() {
     return (
       <View style={styles.app}>
         <Navigator
-          initialRoute={{name: 'EventList', component: EventList, passProps: {things: things}}}
+          initialRoute={{name: 'EventList', component: EventList}}
           configureScene={() => {
               return Navigator.SceneConfigs.FloatFromRight;
           }}
@@ -71,19 +42,6 @@ class whattodoNative extends React.Component {
       </View>
     );
   }
-
-
-  things() {
-    return  (
-      <ScrollView automaticallyAdjustContentInsets={false}
-        onScroll={() => { console.log('onScroll!'); }}
-        scrollEventThrottle={200}
-        style={styles.scrollView}
-        >
-        <EventList things={this.state.things} />
-      </ScrollView>
-    )
-  }
 }
 
 let screenHeight = Dimensions.get('window').height;
@@ -91,7 +49,7 @@ let screenHeight = Dimensions.get('window').height;
 var styles = StyleSheet.create({
   app: {
     flex: 1,
-    backgroundColor: '#C41D47'
+    backgroundColor: '#85b16a'
   },
   inputText: {
     alignSelf: 'center',

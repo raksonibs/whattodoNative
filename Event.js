@@ -41,7 +41,7 @@ class Event extends React.Component {
               {this.props.thing.location}
               // need difference from this person here
             </Text>
-            <Text onPress={this.onPressFeedEvent.bind(this)}>
+            <Text onPress={this.onPressEvent.bind(this)}>
               Click to learn more, then show view, with listing url
             </Text>
           </View>
