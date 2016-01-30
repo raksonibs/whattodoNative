@@ -4,7 +4,8 @@ var {
   ScrollView,
   StyleSheet,
   View,
-  ScrollView
+  ScrollView,
+  NavigatorIOS
 } = React;
 
 var REQUEST_URL = 'http://localhost:3000/api/v1/today';
@@ -36,6 +37,7 @@ class EventList extends React.Component {
     }
     render() {
       things = this.state.things || things
+      debugger
       return (
         <View style={styles.thingContainer}>
           <ScrollView automaticallyAdjustContentInsets={false}
@@ -44,7 +46,7 @@ class EventList extends React.Component {
             style={styles.scrollView}
           >
            {things.map((thing, i) => {
-              return <Event delete={this.props.delete} update={this.props.update} thing={thing} key={i} />
+              return <Event navigator={this.props.navigator} delete={this.props.delete} update={this.props.update} thing={thing} key={i} />
             })}         
           </ScrollView>
         </View>
@@ -56,12 +58,12 @@ var styles = StyleSheet.create({
   thingContainer: {
     alignSelf: 'center',
     padding: 20,
-    paddingTop: 20,
+    paddingTop: 100,
     backgroundColor: '#85b16a',
   },
   scrollView: {
     backgroundColor: '#6A85B1',
-    height: 700,
+    height: 600,
   },
   horizontalScrollView: {
     height: 120,

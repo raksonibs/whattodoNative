@@ -15,32 +15,17 @@ var {
 let screenHeight = Dimensions.get('window').height;
 
 class EventShow extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
-        return (
-          <View style={styles.thing}>
-            <Image
-              source={{uri: this.props.thing.image}}
-            />
-            
-            <Text>
-              {this.props.thing.name}
-            </Text>
-            <Text>
-              {this.props.thing.price}
-            </Text>
-            <Text>
-              {this.props.thing.location}
-              // need difference from this person here
-            </Text>
-            <Text>
-             {this.props.thing.url}
-            </Text>
-            <Text>
-             {this.props.thing.desc}
-            </Text>
-          </View>
-        );
-    }
+    return (
+      <View style={styles.thing}>
+        Event Show
+      </View>
+    );
+  }
 }
 
 var styles = StyleSheet.create({
