@@ -34,29 +34,29 @@ class whattodoNative extends React.Component {
   render() {
     return (
       <View style={styles.app}>
-        <Navigator
-          initialRoute={{name: 'EventList', component: EventList}}
-          configureScene={() => {
-              return Navigator.SceneConfigs.FloatFromRight;
-          }}
-          renderScene={(route, navigator) => {              
-              console.log(route, navigator); 
-
-              if (route.component) {
-                  return React.createElement(route.component, { navigator });
-              }
-          }}
-          onBack={() => {
-            if (route.index > 0) {
-              navigator.pop();
-            }
-          }}
-       />     
+        <NavigatorIOS
+        style={styles.container}
+        initialRoute={{
+          title: 'Events',
+          component: EventList
+        }}/>    
 
               
       </View>
     );
   }
 }
+
+var styles = React.StyleSheet.create({
+  text: {
+    color: 'black',
+    backgroundColor: 'white',
+    fontSize: 30,
+    margin: 80
+  },
+  container: {
+    flex: 1
+  }
+})
 
 AppRegistry.registerComponent('whattodoNative', () => whattodoNative);

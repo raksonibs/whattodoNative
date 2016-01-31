@@ -20,6 +20,16 @@ class Event extends React.Component {
     super(props)
   }
 
+  rowPressed(propertyGuid) {
+    var thing =  this.props.thing
+
+    this.props.navigator.push({
+      title: "Event",
+      component: Event,
+      passProps: {thing: thing, navigator: this.props.navigator}
+    });
+  }
+
   onPressEvent() {
     console.log("pressed")
     this.props.navigator.push({
