@@ -57,8 +57,7 @@ class Event extends React.Component {
                   {this.props.event.price}
                 </Text>
                 <Text>
-                  {this.props.event.location}
-                  // need difference from this person here
+                  {this.props.event.location}                 
                 </Text>
                 <Text>
                   Click to learn more, then show view, with listing url
