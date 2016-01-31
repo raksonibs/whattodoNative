@@ -13,6 +13,39 @@ var {
   Image
 } = React;
 
+var styles = StyleSheet.create({
+  container: {
+    marginTop: 65
+  },
+  heading: {
+    backgroundColor: '#F8F8F8',
+  },
+  separator: {
+    height: 1,
+    backgroundColor: '#DDDDDD'
+  },
+  image: {
+    width: 400,
+    height: 300
+  },
+  price: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    margin: 5,
+    color: '#48BBEC'
+  },
+  title: {
+    fontSize: 20,
+    margin: 5,
+    color: '#656565'
+  },
+  description: {
+    fontSize: 18,
+    margin: 5,
+    color: '#656565'
+  }
+});
+
 let screenHeight = Dimensions.get('window').height;
 
 class Event extends React.Component {
@@ -20,66 +53,25 @@ class Event extends React.Component {
     super(props)
   }
 
-  rowPressed(propertyGuid) {
-    var event =  this.props.event
-
-    this.props.navigator.push({
-      title: "Event",
-      component: Event,
-      passProps: {event: event, navigator: this.props.navigator}
-    });
-  }
-
-  onPressEvent() {
-    console.log("pressed")
-    this.props.navigator.push({
-        name: 'EventShow',
-        component: EventShow,
-        passProps: {event: this.props.event, navigator: this.props.navigator}
-    });
-  }
-
   render() {
-        return (
-          <View style={styles.event}>
-            <TouchableHighlight
-              onPress={this.onPressEvent.bind(this)}
-            >
-              <View>
-                <Image
-                  source={{uri: this.props.event.image}}              
-                />
-                
-                <Text>
-                  {this.props.event.name}
-                </Text>
-                <Text>
-                  {this.props.event.price}
-                </Text>
-                <Text>
-                  {this.props.event.location}                 
-                </Text>
-                <Text>
-                  Click to learn more, then show view, with listing url
-                </Text>
-              </View>
-            </TouchableHighlight>
-          </View>
-        );
-    }
+    var event = this.props.event;
+    
+    return (
+      <View style={styles.container}>
+        <Image style={styles.image} 
+            source={{uri: event.image}} />
+        <View style={styles.heading}>
+          <Text style={styles.price}>{event.name}</Text>
+          <Text style={styles.title}>{event.price}</Text>
+          <Text style={styles.description}>{event.location}</Text>
+          <Text style={styles.title}>{event.dayOn}</Text>
+          <Text style={styles.title}>{event.url}</Text>
+          <View style={styles.separator}/>
+        </View>
+        <Text style={styles.description}>{event.desc}</Text>
+      </View>
+    );
+  }
 }
 
-var styles = StyleSheet.create({
-  event: {
-    alignSelf: 'center',
-    padding: 20,
-    paddingTop: 0,
-    width: screenHeight * 0.5,
-    height: screenHeight * 0.1,
-    borderColor: 'gray', 
-    borderWidth: 1
-  },
-});
-
 module.exports = Event;
-

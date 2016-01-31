@@ -1,5 +1,5 @@
 var React = require('react-native');
-import Event from './Event'
+import EventShow from './Event'
 var {
   ScrollView,
   StyleSheet,
@@ -57,8 +57,8 @@ class EventList extends React.Component {
     }
 
     rowPressed(eventId) {
-      var event = this.props.events.filter(event => event.id === eventId)[0];
-
+      var event = this.props.events.filter(event => event.uuid === eventId)[0];
+      
       this.props.navigator.push({
         title: "Event",
         component: EventShow,
@@ -69,7 +69,7 @@ class EventList extends React.Component {
     renderRow(rowData, sectionID, rowID) {
 
       return (
-        <TouchableHighlight onPress={() => this.rowPressed(rowData.guid)}
+        <TouchableHighlight onPress={() => this.rowPressed(rowData.uuid)}
           underlayColor='#dddddd'>
           <View>
             <View style={styles.rowContainer}>
