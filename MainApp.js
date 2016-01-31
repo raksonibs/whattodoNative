@@ -30,7 +30,6 @@ class MainApp extends Component {
   }
 
   _handleResponse(response) {
-    this.setState({ isLoading: false , message: '' });
     if (response.events.length > 0) {
       this.props.navigator.push({
         title: 'Events',
@@ -40,6 +39,7 @@ class MainApp extends Component {
     } else {
       this.setState({ message: 'Not recognized; please try again.'});
     }
+    this.setState({ isLoading: false , message: '' });
   }
 
   _executeQuery() {    
@@ -55,6 +55,13 @@ class MainApp extends Component {
       });
     })
   }
+
+  onEventPressed() {
+    this.setState({
+      isLoading: true,
+    })
+    this._executeQuery()
+  }
    
   render() {
 
@@ -62,7 +69,12 @@ class MainApp extends Component {
       ( <ActivityIndicatorIOS
           hidden='true'
           size='large'/> ) :
-      ( <View/>);
+      ( <TouchableHighlight style={styles.button}
+            underlayColor='#99d9f4'
+            onPress={this.onEventPressed.bind(this)}
+            >
+            <Text style={styles.buttonText}>Go</Text>
+          </TouchableHighlight> );
     return (
       <View style={styles.container}>        
         <Text> Loading for you fine folks... </Text>
@@ -93,7 +105,24 @@ var styles = StyleSheet.create({
   image: {
     width: 217,
     height: 138
-  }
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
+    alignSelf: 'center'
+  },
+  button: {
+    height: 36,
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
 });
 
 module.exports = MainApp;
