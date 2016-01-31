@@ -21,12 +21,12 @@ class Event extends React.Component {
   }
 
   rowPressed(propertyGuid) {
-    var thing =  this.props.thing
+    var event =  this.props.event
 
     this.props.navigator.push({
       title: "Event",
       component: Event,
-      passProps: {thing: thing, navigator: this.props.navigator}
+      passProps: {event: event, navigator: this.props.navigator}
     });
   }
 
@@ -35,29 +35,29 @@ class Event extends React.Component {
     this.props.navigator.push({
         name: 'EventShow',
         component: EventShow,
-        passProps: {thing: this.props.thing, navigator: this.props.navigator}
+        passProps: {event: this.props.event, navigator: this.props.navigator}
     });
   }
 
   render() {
         return (
-          <View style={styles.thing}>
+          <View style={styles.event}>
             <TouchableHighlight
               onPress={this.onPressEvent.bind(this)}
             >
               <View>
                 <Image
-                  source={{uri: this.props.thing.image}}              
+                  source={{uri: this.props.event.image}}              
                 />
                 
                 <Text>
-                  {this.props.thing.name}
+                  {this.props.event.name}
                 </Text>
                 <Text>
-                  {this.props.thing.price}
+                  {this.props.event.price}
                 </Text>
                 <Text>
-                  {this.props.thing.location}
+                  {this.props.event.location}
                   // need difference from this person here
                 </Text>
                 <Text>
@@ -71,7 +71,7 @@ class Event extends React.Component {
 }
 
 var styles = StyleSheet.create({
-  thing: {
+  event: {
     alignSelf: 'center',
     padding: 20,
     paddingTop: 0,

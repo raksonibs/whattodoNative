@@ -13,8 +13,12 @@ var {
 
 var Dimensions = require('Dimensions');
 
+var REQUEST_URL = 'http://localhost:3000/api/v1/today';
+let things = []
+
 var EventForm             = require('./EventForm');
 var EventList             = require('./EventList');
+var MainApp            = require('./MainApp');
 
 var styles = StyleSheet.create({
   app: {
@@ -26,22 +30,19 @@ var styles = StyleSheet.create({
 
 class whattodoNative extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = { text: "Input new thing here!"};
+    super(props);    
     component = this;
   }
 
   render() {
     return (
-      <View style={styles.app}>
+      <View style={styles.container}>
         <NavigatorIOS
         style={styles.container}
         initialRoute={{
-          title: 'Events',
-          component: EventList
-        }}/>    
-
-              
+          title: 'WhatToDo',
+          component: MainApp
+        }}/>              
       </View>
     );
   }

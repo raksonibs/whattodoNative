@@ -5,107 +5,54 @@ var {
   StyleSheet,
   View,
   ScrollView,
-  NavigatorIOS,
-  ListView
+  NavigatorIOS
 } = React;
 
 var REQUEST_URL = 'http://localhost:3000/api/v1/today';
 
-let things = [];
+let events = [];
 let component;
 
 class EventList extends React.Component {
     constructor(props) {
       super(props);
-      var dataSource = new ListView.DataSource(
-        {rowHasChanged: (r1, r2) => r1.id !== r2.id});
-      this.state = {
-        dataSource: dataSource.cloneWithRows(things)
-      };
+      this.state = { events: this.props.events };
       component = this;
     }
 
-    componentDidMount() {
-      this.fetchData()
-    }
-
-    fetchData() {
-      fetch(REQUEST_URL)
-      .then((response) => response.json())
-      .then((responseData) => {
-          things = responseData.events
-          this.setState({
-              things: things
-          });
-      })
-      .done();
-    }
-
-    rowPressed(eventId) {
-      var event = this.props.things.filter(prop => prop.id === eventId)[0];
-
-      this.props.navigator.push({
-        title: "Event",
-        component: EventShow,
-        passProps: {event: event}
-      });
-    }
-
-    renderRow(rowData, sectionID, rowID) {
-      return (
-        <TouchableHighlight onPress={() => this.rowPressed(rowData.id)}
-            underlayColor='#dddddd'>
-          <View>
-            <View style={styles.rowContainer}>
-              <Image style={styles.thumb} source={{ uri: rowData.image }} />
-              <View  style={styles.textContainer}>
-                <Text style={styles.price}>{rowData.price}</Text>
-                <Text style={styles.title} 
-                      numberOfLines={1}>{rowData.name}</Text>
-              </View>
-            </View>
-            <View style={styles.separator}/>
-          </View>
-        </TouchableHighlight>
-      );
-    }
-
     render() {
-      things = this.state.things || things
+      events = this.props.events
+
       return (
-        <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderRow.bind(this)}/>
+        <View style={styles.eventContainer}>
+          <ScrollView automaticallyAdjustContentInsets={false}
+            onScroll={() => { console.log('onScroll!'); }}
+            scrollEventThrottle={200}
+            style={styles.scrollView}
+          >
+           {events.map((event, i) => {
+              return <Event navigator={this.props.navigator} event={event} key={i} />
+            })}         
+          </ScrollView>
+        </View>
     );
   }
 }
 
 var styles = StyleSheet.create({
-  thumb: {
-    width: 80,
-    height: 80,
-    marginRight: 10
+  eventContainer: {
+    alignSelf: 'center',
+    padding: 20,
+    paddingTop: 100,
+    backgroundColor: '#85b16a',
   },
-  textContainer: {
-    flex: 1
+  scrollView: {
+    backgroundColor: '#6A85B1',
+    height: 600,
   },
-  separator: {
-    height: 1,
-    backgroundColor: '#dddddd'
-  },
-  price: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: '#48BBEC'
-  },
-  title: {
-    fontSize: 20,
-    color: '#656565'
-  },
-  rowContainer: {
-    flexDirection: 'row',
-    padding: 10
+  horizontalScrollView: {
+    height: 120,
   }
-});
+})
 
 module.exports = EventList;
