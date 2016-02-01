@@ -56,7 +56,9 @@ var styles = React.StyleSheet.create({
     margin: 80
   },
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#551A8B',
+    alignItems: 'stretch'
   }
 })
 

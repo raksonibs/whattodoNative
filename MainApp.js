@@ -26,7 +26,7 @@ class MainApp extends Component {
   }
 
   componentDidMount() {
-    this._executeQuery();
+    this._executeQuery(); 
   }
 
   _handleResponse(response) {
@@ -73,11 +73,12 @@ class MainApp extends Component {
             underlayColor='#99d9f4'
             onPress={this.onEventPressed.bind(this)}
             >
-            <Text style={styles.buttonText}>Go</Text>
+            <Text style={styles.buttonText}>Explore</Text>
           </TouchableHighlight> );
     return (
-      <View style={styles.container}>        
-        <Text> Loading for you fine folks... </Text>
+      <View style={styles.container}>
+        <Text style={styles.header}> WhatToDo </Text>    
+        <Text> Events for Toronto, Canada </Text>
         {spinner}
         <Text style={styles.description}>{this.state.message}</Text>
       </View>
@@ -92,10 +93,17 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     color: '#656565'
   },
+  header: {
+    fontSize: 25,
+    margin: 5,
+    color: '#656565',
+    fontFamily: 'Roboto-Bold'
+  },
   container: {
     padding: 30,
     marginTop: 65,
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#BA55D3',
   },
   flowRight: {
     flexDirection: 'row',
