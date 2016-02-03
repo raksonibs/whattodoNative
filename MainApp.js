@@ -78,7 +78,7 @@ class MainApp extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.header}> WhatToDo </Text>    
-        <Text> Events for Toronto, Canada </Text>
+        <Text style={styles.text}> Events for Toronto, Canada </Text>
         {spinner}
         <Text style={styles.description}>{this.state.message}</Text>
       </View>
@@ -91,12 +91,15 @@ var styles = StyleSheet.create({
     marginBottom: 20,
     fontSize: 18,
     textAlign: 'center',
-    color: '#656565'
+    color: 'white'
+  },
+  text: {
+    color: 'white'
   },
   header: {
     fontSize: 25,
     margin: 5,
-    color: '#656565',
+    color: 'white',
     fontFamily: 'Roboto-Bold'
   },
   container: {
@@ -104,6 +107,7 @@ var styles = StyleSheet.create({
     marginTop: 65,
     alignItems: 'center',
     backgroundColor: '#BA55D3',
+    flex: 1
   },
   flowRight: {
     flexDirection: 'row',
@@ -121,7 +125,6 @@ var styles = StyleSheet.create({
   },
   button: {
     height: 36,
-    flex: 1,
     flexDirection: 'row',
     backgroundColor: '#48BBEC',
     borderColor: '#48BBEC',

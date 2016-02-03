@@ -33,15 +33,16 @@ var styles = StyleSheet.create({
   price: {
     fontSize: 25,
     fontWeight: 'bold',
-    color: '#48BBEC'
+    color: 'white'
   },
   title: {
     fontSize: 20,
-    color: '#656565'
+    color: '#white'
   },
   rowContainer: {
     flexDirection: 'row',
-    padding: 10
+    padding: 10,
+    backgroundColor: '#BA55D3',
   }
 });
 

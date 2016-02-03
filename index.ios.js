@@ -38,6 +38,9 @@ class whattodoNative extends React.Component {
     return (
       <View style={styles.container}>
         <NavigatorIOS
+        barTintColor='#000'
+        titleTextColor='#fff'
+        tintColor='#fff'
         style={styles.container}
         initialRoute={{
           title: 'WhatToDo',
@@ -48,17 +51,19 @@ class whattodoNative extends React.Component {
   }
 }
 
+var {width, height} = Dimensions.get('window');
+
 var styles = React.StyleSheet.create({
   text: {
-    color: 'black',
+    color: 'white',
     backgroundColor: 'white',
     fontSize: 30,
     margin: 80
   },
   container: {
     flex: 1,
-    backgroundColor: '#551A8B',
-    alignItems: 'stretch'
+    alignItems: 'stretch',
+    backgroundColor: '#BA55D3',
   }
 })
 
