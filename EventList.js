@@ -43,6 +43,10 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 10,
     backgroundColor: '#BA55D3',
+  },
+  fullView: {
+    flex: 1,
+    backgroundColor: '#BA55D3',
   }
 });
 
@@ -93,7 +97,9 @@ class EventList extends React.Component {
     return (
       <ListView
         dataSource={this.state.dataSource}
-        renderRow={this.renderRow.bind(this)}/>
+        renderRow={this.renderRow.bind(this)}
+        style={styles.fullView}
+        />
     );
   }
 
