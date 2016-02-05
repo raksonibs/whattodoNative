@@ -21,6 +21,7 @@ let things = []
 var EventForm             = require('./EventForm');
 var EventList             = require('./EventList');
 var MainApp            = require('./MainApp');
+var Footer            = require('./Footer.js');
 
 var styles = StyleSheet.create({
   app: {
@@ -57,13 +58,8 @@ class whattodoNative extends Component {
           title: 'WhatToDo',
           component: MainApp
         }}/>
-        <View style={styles.footer}>
-          <TouchableHighlight style={styles.button}
-            underlayColor='#99d9f4'
-            onPress={this.onEventPressed.bind(this)}
-            >
-            <Text style={styles.buttonText}>Match your events!</Text>
-          </TouchableHighlight>
+        <View>
+          <Footer />
         </View>     
       </View>
     );

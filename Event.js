@@ -10,7 +10,8 @@ var {
   TouchableElement,
   StyleSheet,
   Dimensions,
-  Image
+  Image,
+  ScrollView
 } = React;
 
 var styles = StyleSheet.create({
@@ -59,7 +60,7 @@ class Event extends React.Component {
     var event = this.props.event;
     
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Image style={styles.image} 
             source={{uri: event.image}} />
         <View style={styles.heading}>
@@ -71,7 +72,7 @@ class Event extends React.Component {
           <View style={styles.separator}/>
         </View>
         <Text style={styles.description}>{event.desc}</Text>
-      </View>
+      </ScrollView>
     );
   }
 }
