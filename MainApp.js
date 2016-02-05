@@ -70,11 +70,11 @@ class MainApp extends Component {
           hidden='true'
           size='large'/> ) :
       ( <TouchableHighlight style={styles.button}
-            underlayColor='#99d9f4'
-            onPress={this.onEventPressed.bind(this)}
-            >
-            <Text style={styles.buttonText}>Explore</Text>
-          </TouchableHighlight> );
+          underlayColor='#99d9f4'
+          onPress={this.onEventPressed.bind(this)}
+          >
+          <Text style={styles.buttonText}>Explore All</Text>
+        </TouchableHighlight> );
     return (
       <View style={styles.container}>
         <Text style={styles.header}> WhatToDo </Text>    

@@ -8,7 +8,9 @@ var {
   Image,
   ScrollView,
   Navigator,
-  NavigatorIOS
+  NavigatorIOS,
+  TouchableHighlight,
+  Component
 } = React;
 
 var Dimensions = require('Dimensions');
@@ -28,10 +30,19 @@ var styles = StyleSheet.create({
 });
 
 
-class whattodoNative extends React.Component {
+class whattodoNative extends Component {
   constructor(props) {
     super(props);    
     component = this;
+    this.state = {
+    }
+  }
+
+  onEventPrssed() {            
+    this.props.navigator.push({
+      title: "Search",
+      component: SearchShow
+    });
   }
 
   render() {
@@ -45,7 +56,15 @@ class whattodoNative extends React.Component {
         initialRoute={{
           title: 'WhatToDo',
           component: MainApp
-        }}/>              
+        }}/>
+        <View style={styles.footer}>
+          <TouchableHighlight style={styles.button}
+            underlayColor='#99d9f4'
+            onPress={this.onEventPressed.bind(this)}
+            >
+            <Text style={styles.buttonText}>Match your events!</Text>
+          </TouchableHighlight>
+        </View>     
       </View>
     );
   }
@@ -59,6 +78,11 @@ var styles = React.StyleSheet.create({
     backgroundColor: 'white',
     fontSize: 30,
     margin: 80
+  },
+  footer: {
+    backgroundColor: '#000',
+    flex: 1,
+    alignItems: 'stretch'
   },
   container: {
     flex: 1,
