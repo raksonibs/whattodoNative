@@ -14,20 +14,27 @@ class EventForm extends React.Component {
       money: '',
       activity: '',
       location: '',
-      isLoading: false
+      isLoading: false,
+      showPrice: true,
+      showActivity: false,
+      showLocation: false,
+      message: ''
     };
   }
 
   changePrice(price) {
     this.state.money = price;
+    this.setState({showPrice: false, showActivity: true})
   }
 
   changeActivity(activity) {
     this.state.activity = activity;
+    this.setState({showActivty: false, showLocation: true})
   }
 
   changeLocation(location) {
     this.state.location = location;
+    this.setState({showLocation: false})
     this._executeSearch()
   }
 
@@ -64,8 +71,23 @@ class EventForm extends React.Component {
 
   renderButtons() {
     let prices = [0,25,100];
-    for (var i=0; i < 3;i++) {
-      return <EventFormButton key={i} onPress={this.changePrice.bind(this, i)} price={prices[i]} />
+    let locations = ['far', 'close', 'explore']
+    let categories = ['Party', 'Party', 'Party']
+
+    for (var i=0; i < 9;i++) {
+      if ( i <  3) {
+        if (this.state.showPrice === true) {          
+          return <EventFormButton key={i} changePrice={this.changePrice.bind(this, i)} attributeAmount={prices[i]} />        
+        }
+      } else if ( i > 6) {
+        if (this.state.showLocation === true) {
+          return <EventFormButton key={i} changeLocation={this.changeLocation.bind(this, i)} attributeAmount={locations[i - 3]} />
+        }
+      } else {
+        if (this.state.showActivity === true) {
+          return <EventFormButton key={i} changeActivity={this.changeActivity.bind(this, i)} attributeAmount={activity[i - 6]} />
+        }
+      }
     }
   }
 
@@ -75,7 +97,7 @@ class EventForm extends React.Component {
       ( <ActivityIndicatorIOS
           hidden='true'
           size='large'/> ) :
-      ( <View /> );
+      ( this.renderButtons() );
 
     return (
       <View style={styles.container}>
