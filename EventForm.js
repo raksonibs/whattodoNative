@@ -3,6 +3,9 @@
 let React = require('react-native');
 let { StyleSheet, Image, TextInput, TouchableHighlight, View, Text } = React;
 var Dimensions = require('Dimensions');
+var EventFormButton = require('./EventFormButton');
+
+var REQUEST_URL = 'http://localhost:3000/api/v1/get_rating/';
 
 class EventForm extends React.Component {
   constructor(props) {
@@ -11,41 +14,72 @@ class EventForm extends React.Component {
       money: '',
       activity: '',
       location: ''
+      isLoading: false
     };
   }
 
-  changePrice() {
-    debugger
-   let priceReturned = price
-    this.state.money = priceReturned;
+  changePrice(price) {
+    this.state.money = price;
+  }
+
+  changeActivity(activity) {
+    this.state.activity = activity;
+  }
+
+  changeLocation(location) {
+    this.state.location = location;
+    this._executeSearch()
+  }
+
+  _handleResponse(response) {
+    // these events have a score!
+    if (response.events.length > 0) {
+      this.props.navigator.push({
+        title: 'Events',
+        component: EventList,
+        passProps: {events: response.events}
+      });
+    } else {
+      this.setState({ message: 'Not recognized; please try again.'});
+    }
+    this.setState({ isLoading: false , message: '' });
+  }
+
+  _executeSearch() {
+    this.setState({
+      isLoading: true,
+    })
+    console.log(REQUEST_URL);
+    fetch(REQUEST_URL + this.state.money + '/' + this.state.activity + '/' + this.state.location)
+    .then(response => response.json())
+    .then(responseData => this._handleResponse(responseData))
+    .catch(error => {      
+      console.log("error")
+      this.setState({
+        isLoading: false,
+        message: 'Something bad happened ' + error
+      });
+    })
+  }
+
+  renderButtons() {
+    let prices = [0,25,100];
+    for (var i=0; i < 3;i++) {
+      return <EventFormButton key={i} onPress={this.changePrice.bind(this, i)} price={prices[i]} />
+    }
   }
 
   render() {
+
+    var spinner = this.state.isLoading ?
+      ( <ActivityIndicatorIOS
+          hidden='true'
+          size='large'/> ) :
+      ( {this.renderButtons()} );
+
     return (
       <View style={styles.container}>
-        <TouchableHighlight
-          style={styles.button}
-          underlayColor='#ccc'
-          onPress={this.changePrice.bind(this)}
-        >
-          <Text style={styles.buttonText}>100</Text>
-        </TouchableHighlight>
-
-        <TouchableHighlight
-          style={styles.button}
-          underlayColor='#ccc'
-          onPress={this.changePrice.bind(this)}
-        >
-          <Text style={styles.buttonText}>25</Text>
-        </TouchableHighlight>
-
-        <TouchableHighlight
-          style={styles.button}
-          underlayColor='#ccc'
-          onPress={this.changePrice.bind(this)}
-        >
-          <Text style={styles.buttonText}>0</Text>
-        </TouchableHighlight>
+        {spinner}
       </View>
     )
   }
