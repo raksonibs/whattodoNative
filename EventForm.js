@@ -4,40 +4,48 @@ let React = require('react-native');
 let { StyleSheet, Image, TextInput, TouchableHighlight, View, Text } = React;
 var Dimensions = require('Dimensions');
 
-class Event extends React.Component {
+class EventForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { input: this.props.text || '', text: this.props.text || ''};
+    this.state = { 
+      money: '',
+      activity: '',
+      location: ''
+    };
   }
 
-  addThing() {
-    let thing = {name: this.state.text, loved: 'false'}
-    this.props.addThing(thing)
-
-    this.setState({
-      input: '',
-      text: ''
-    })
+  changePrice() {
+    debugger
+   let priceReturned = price
+    this.state.money = priceReturned;
   }
 
   render() {
     return (
-      <View>
-        <TextInput
-          style={styles.image}
-          value={this.state.text}
-          onChange={(event) => this.setState({text: event.nativeEvent.text})}
-        />
+      <View style={styles.container}>
+        <TouchableHighlight
+          style={styles.button}
+          underlayColor='#ccc'
+          onPress={this.changePrice.bind(this)}
+        >
+          <Text style={styles.buttonText}>100</Text>
+        </TouchableHighlight>
 
-        <View style={styles.buttonContainer}>
-          <TouchableHighlight
-            style={styles.button}
-            underlayColor='#ccc'
-            onPress={this.addThing.bind(this)}
-          >
-            <Text style={styles.buttonText}>Add Thing!</Text>
-          </TouchableHighlight>
-        </View>
+        <TouchableHighlight
+          style={styles.button}
+          underlayColor='#ccc'
+          onPress={this.changePrice.bind(this)}
+        >
+          <Text style={styles.buttonText}>25</Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight
+          style={styles.button}
+          underlayColor='#ccc'
+          onPress={this.changePrice.bind(this)}
+        >
+          <Text style={styles.buttonText}>0</Text>
+        </TouchableHighlight>
       </View>
     )
   }
@@ -46,29 +54,55 @@ class Event extends React.Component {
 let screenHeight = Dimensions.get('window').height;
 var windowSize = Dimensions.get('window');
 
-let styles = StyleSheet.create({
-  image: {
-    alignSelf: 'center',
-    width: screenHeight*0.5,
-    height: screenHeight * 0.1,
-    borderColor: 'gray', 
-    borderWidth: 1
-  },
-  buttonContainer: {
-    bottom: 0,
-    flex: .1,
-    width: windowSize.width,
-    backgroundColor: '#eee',
-  },
-  button: {
+var styles = StyleSheet.create({
+  container: {
+    marginTop: 65,
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#BA55D3',
+  },
+  heading: {
+    backgroundColor: '#BA55D3',
+  },
+  separator: {
+    height: 1,
+    backgroundColor: '#DDDDDD'
+  },
+  image: {
+    width: 420,
+    height: 300
+  },
+  price: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    margin: 5,
+    color: 'white'
+  },
+  title: {
+    fontSize: 20,
+    margin: 5,
+    color: 'white'
+  },
+  description: {
+    fontSize: 18,
+    margin: 5,
+    color: 'white'
   },
   buttonText: {
-    fontSize: 30,
-    color: '#666666',
+    fontSize: 18,
+    color: 'white',
+    alignSelf: 'center'
   },
-})
+  button: {
+    height: 36,
+    flexDirection: 'row',
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  }
+});
 
-module.exports = Event;
+module.exports = EventForm;
