@@ -39,13 +39,6 @@ class whattodoNative extends Component {
     }
   }
 
-  onEventPrssed() {            
-    this.props.navigator.push({
-      title: "Search",
-      component: SearchShow
-    });
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -57,10 +50,7 @@ class whattodoNative extends Component {
         initialRoute={{
           title: 'WhatToDo',
           component: MainApp
-        }}/>
-        <View>
-          <Footer />
-        </View>     
+        }}/>     
       </View>
     );
   }

@@ -14,6 +14,8 @@ var {
 
 var REQUEST_URL = 'http://localhost:3000/api/v1/today';
 
+var Footer = require("./Footer");
+
 let events = [];
 let component;
 
