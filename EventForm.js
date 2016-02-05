@@ -13,7 +13,7 @@ class EventForm extends React.Component {
     this.state = { 
       money: '',
       activity: '',
-      location: ''
+      location: '',
       isLoading: false
     };
   }
@@ -75,7 +75,7 @@ class EventForm extends React.Component {
       ( <ActivityIndicatorIOS
           hidden='true'
           size='large'/> ) :
-      ( {this.renderButtons()} );
+      ( <View /> );
 
     return (
       <View style={styles.container}>
